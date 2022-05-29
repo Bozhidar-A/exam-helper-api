@@ -15,8 +15,34 @@ YearAndSessionRouts.route("/GetByYearAndSession").get(async function (req, res) 
           res.json(result);
         }
       });
+});
 
-  // res.json(`year = ${req.query.year}, session = ${req.query.session}`)
+YearAndSessionRouts.route("/GetSelectorData").get(async function (req, res) {
+  let years = await conn.db
+    .collection("maturaData")
+      .distinct("year")
+
+  allData = [];
+
+  let baseStruct = {
+    year:0,
+    sessions:[]
+  }
+
+  for (const yr of years){
+    let tmp = baseStruct;
+    tmp.year = yr;
+
+    let sessions = await conn.db
+    .collection("maturaData")
+    .distinct("session", {year:yr})
+
+    tmp.sessions = sessions;
+
+    allData.push(tmp)
+  }
+
+  res.json(allData)
 });
 
 module.exports = YearAndSessionRouts
