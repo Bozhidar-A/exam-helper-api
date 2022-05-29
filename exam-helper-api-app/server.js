@@ -29,8 +29,8 @@ const boot = async () => {
   app.use(express.json());
 
   //load routes
-  app.use("/YearAndSession", require("./app/routes/YearAndSession"));
-  app.use("/Heartbeat", require("./app/routes/Heartbeat"));
+  app.use("/api_v1/YearAndSession", require("./app/routes/YearAndSession"));
+  app.use("/api_v1/Heartbeat", require("./app/routes/Heartbeat"));
 
   const PORT = process.env.NODE_DOCKER_PORT || 8080;
   app.listen(PORT, () => {
