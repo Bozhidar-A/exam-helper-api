@@ -18,12 +18,17 @@ function ReadJSONFiles() {
     });
   });
 
+  ID = 1;
+  for (let index = 0; index < allJSONData.length; index++) {
+    allJSONData[index]["id"] = ID;
+    ID++;
+  }
+
   return allJSONData;
 }
 
 module.exports = {
   StartUp: () => {
-    ReadJSONFiles();
     conn.db
       .collection("maturaData")
       .insertMany(ReadJSONFiles())
