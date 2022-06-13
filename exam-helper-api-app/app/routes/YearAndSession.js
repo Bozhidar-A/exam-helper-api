@@ -35,15 +35,12 @@ YearAndSessionRouts.route("/GetSelectorData").get(async function (req, res) {
   allData = [];
 
   //interface for the data
-  let baseStruct = {
-    year: 0,
-    sessions: [],
-  };
+  var baseStruct = '{"year":"", "sessions":[]}';
 
   //loop over the years
   for (const yr of years) {
     //create a temporary and store the year
-    let tmp = baseStruct;
+    let tmp = JSON.parse(baseStruct);
     tmp.year = yr;
 
     //do a distinct for the sessions of that year
