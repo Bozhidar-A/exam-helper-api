@@ -15,7 +15,7 @@ services:
   app:
     depends_on:
       - mongodb
-    image: bplatanasov/exam-helper-api
+    build: ./exam-helper-api-app
     restart: unless-stopped
     env_file: ./.env
     ports:
