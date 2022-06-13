@@ -20,7 +20,7 @@ const boot = async () => {
   }
 
   var corsOptions = {
-    origin: "http://localhost:8081",
+    origin: "*",
   };
 
   app.use(cors(corsOptions));
